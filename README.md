@@ -113,8 +113,8 @@ npm install
 
 ```
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/librarydb
-JWT_SECRET=yourSecretKey
+MONGO_URI=mongodb://localhost:27017/library-management
+
 ```
 
 ### 4. Start Server
