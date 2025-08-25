@@ -13,7 +13,9 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const app = (0, express_1.default)();
 dotenv_1.default.config();
 app.use(express_1.default.json());
-app.use((0, cors_1.default)({ origin: "http://localhost:5173" }));
+app.use((0, cors_1.default)({
+    origin: ["https://library-management-client-gules.vercel.app"],
+}));
 app.use("/api/books", book_controller_1.bookRoutes);
 app.use("/api/borrow", borrow_controller_1.borrowRoutes);
 app.get("/", (req, res) => {

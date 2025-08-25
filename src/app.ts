@@ -11,7 +11,11 @@ const app: Application = express();
 dotenv.config();
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    origin: ["https://library-management-client-gules.vercel.app"],
+  })
+);
 
 app.use("/api/books", bookRoutes);
 app.use("/api/borrow", borrowRoutes);
