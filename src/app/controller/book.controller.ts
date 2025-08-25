@@ -42,6 +42,7 @@ bookRoutes.put("/:bookId", async (req: Request, res: Response) => {
   const body = await updateBookZodSchema.parseAsync(req.body);
   const bookId = req.params.bookId;
   const options = { new: true, runValidators: true };
+  const book = await Book.findById(bookId);
 
   await Book.increaseCopies(
     bookId,

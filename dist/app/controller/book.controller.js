@@ -49,6 +49,7 @@ exports.bookRoutes.put("/:bookId", (req, res) => __awaiter(void 0, void 0, void 
     const body = yield book_zodValidation_1.updateBookZodSchema.parseAsync(req.body);
     const bookId = req.params.bookId;
     const options = { new: true, runValidators: true };
+    const book = yield book_model_1.Book.findById(bookId);
     yield book_model_1.Book.increaseCopies(bookId, typeof body.copies === "number" ? body.copies : 0);
     const result = yield book_model_1.Book.findByIdAndUpdate(bookId, { $set: body }, options);
     res.status(201).json({

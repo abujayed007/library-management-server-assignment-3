@@ -14,14 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
-let server;
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield mongoose_1.default.connect("mongodb+srv://admin_um:Jayed778@cluster0.lugl172.mongodb.net/library-management?retryWrites=true&w=majority&appName=Cluster0");
+            const mongoUri = process.env.MONGODB_URI;
+            if (!mongoUri) {
+                throw new Error("MONGODB_URI environment variable is not defined.");
+            }
+            yield mongoose_1.default.connect(mongoUri);
             console.log("connected to Mongodb using mongoose");
-            server = app_1.default.listen(PORT, () => {
+            app_1.default.listen(PORT, () => {
                 console.log(`Server listen on port ${PORT}`);
             });
         }
